@@ -1,33 +1,18 @@
-import * as actionType from './ActionType';
+import * as actionType from './action-type';
+import axios from 'axios';
 
-/*export const addCounter = () => ({
-  type: actionType.ADD_COUNTER,
-  payload: 1
-});*/
+const SIGNIN_URL = ``
 
+export const singin  = (userName, password) => {
 
-export const addCounter  = () => ({
-  		type: actionType.ADD_COUNTER,
-  		payload: 1
-});
+  const url = `${SIGNIN_URL}&${userName}&${password}`;
+  const request = axios.get(url);
 
 
+return {
+      type: actionType.SIGNIN,
+      payload: request
+      }
 
-export const removeCounter = () => ({
-  type: actionType.REMOVE_COUNTER,
-  payload: 1
-});
-
-
-export const counterMiddleware = store => next => action => {
-	console.log('starting middleware')
-  if (action.type === actionType.ADD_COUNTER) {
-  		console.log('inside middleware');
-
-    	() => store.dispatch(addCounter());
-      	console.log(' done');
-  } 
-
-  next(action);
-  
 };
+
